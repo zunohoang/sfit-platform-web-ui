@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
-import Dashboard from '@/components/Dashboard';
+import ActivityPage from '@/components/ActivityPage';
 
-export default function Home() {
+export default function Activity() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <Dashboard />
+        <ActivityPage />
       </main>
     </div>
   );

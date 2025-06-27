@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
-import Dashboard from '@/components/Dashboard';
+import NewsList from '@/components/NewsList';
 
-export default function Home() {
+export default function NewsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <Dashboard />
+        <NewsList />
       </main>
     </div>
   );

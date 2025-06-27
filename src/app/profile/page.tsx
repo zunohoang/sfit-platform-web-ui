@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
-import Dashboard from '@/components/Dashboard';
+import ProfilePage from '@/components/ProfilePage';
 
-export default function Home() {
+export default function Profile() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <Dashboard />
+        <ProfilePage />
       </main>
     </div>
   );

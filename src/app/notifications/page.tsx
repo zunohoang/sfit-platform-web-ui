@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
-import Dashboard from '@/components/Dashboard';
+import NotificationsList from '@/components/NotificationsList';
 
-export default function Home() {
+export default function NotificationsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <Dashboard />
+        <NotificationsList />
       </main>
     </div>
   );

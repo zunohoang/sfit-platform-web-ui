@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
-import Dashboard from '@/components/Dashboard';
+import TasksList from '@/components/TasksList';
 
-export default function Home() {
+export default function TasksPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <Dashboard />
+        <TasksList />
       </main>
     </div>
   );

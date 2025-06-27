@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
-import Dashboard from '@/components/Dashboard';
+import CoursesList from '@/components/CoursesList';
 
-export default function Home() {
+export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <Dashboard />
+        <CoursesList />
       </main>
     </div>
   );
