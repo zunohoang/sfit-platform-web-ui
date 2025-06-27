@@ -27,16 +27,16 @@ const newsArticles = [
   },
   {
     id: 2,
-    title: 'Workshop "AI và Machine Learning cho người mới bắt đầu"',
-    excerpt: 'Tham gia workshop miễn phí về AI cơ bản dành cho các thành viên mới. Khóa học sẽ giúp bạn làm quen với các khái niệm cơ bản trong lĩnh vực trí tuệ nhân tạo...',
+    title: 'Workshop "AI  bắt đầu"',
+    excerpt: 'Thaọc sẽ giúp bạn làm quen với các khái niệm cơ bản trong lĩnh vực trí tuệ nhân tạo...',
     content: 'Nội dung chi tiết về workshop AI...',
-    author: 'Thầy Nguyễn Văn A',
+    author: 'Thầy Ng',
     publishedAt: '2025-01-14T15:30:00Z',
     category: 'Workshop',
     image: '/api/placeholder/600/300',
     views: 856,
     comments: 15,
-    tags: ['AI', 'machine learning', 'workshop']
+    tags: ['AI']
   },
   {
     id: 3,
@@ -140,7 +140,7 @@ export default function NewsList() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center">
           <NewspaperIcon className="w-8 h-8 text-[#267452] mr-3" />
-          Bản tin câu lạc bộ
+          Bản tin & Góc chia sẻ
         </h1>
         <p className="text-gray-600">
           Cập nhật những tin tức mới nhất về hoạt động và sự kiện của SFIT Club
@@ -205,12 +205,9 @@ export default function NewsList() {
               {filteredNews.map((article, index) => (
                 <article
                   key={article.id}
-                  className={`card hover:shadow-lg transition-shadow duration-200 ${index === 0 ? 'lg:flex lg:space-x-6' : ''
-                    }`}
+                  className={`card hover:shadow-lg transition-shadow duration-200 lg:flex lg:space-x-6`}
                 >
-                  {/* Featured Article (First one) */}
-                  {index === 0 && (
-                    <>
+                  <>
                       <div className="lg:w-1/2">
                         <div className="w-full h-64 bg-gray-200 rounded-lg mb-4 lg:mb-0 overflow-hidden">
                           <div className="w-full h-full bg-gradient-to-br from-[#267452] to-[#1f5e42] flex items-center justify-center">
@@ -250,17 +247,12 @@ export default function NewsList() {
                             </span>
                           </div>
                         </div>
-                        <div className="mt-4">
-                          <button className="btn-primary">
-                            Đọc tiếp
-                          </button>
-                        </div>
+                       
                       </div>
-                    </>
-                  )}
+                      </>
 
                   {/* Regular Articles */}
-                  {index > 0 && (
+                  {/* {index > 0 && (
                     <>
                       <div className="w-full h-48 bg-gray-200 rounded-lg mb-4 overflow-hidden">
                         <div className="w-full h-full bg-gradient-to-br from-[#267452] to-[#1f5e42] flex items-center justify-center">
@@ -297,27 +289,9 @@ export default function NewsList() {
                           </span>
                         </div>
                       </div>
-                      <div className="mt-4">
-                        <button className="btn-secondary">
-                          Đọc tiếp
-                        </button>
-                      </div>
+                  
                     </>
-                  )}
-
-                  {/* Tags */}
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex flex-wrap gap-2">
-                      {article.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full hover:bg-[#267452] hover:text-white cursor-pointer transition-colors duration-200"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  )} */}
                 </article>
               ))}
             </div>

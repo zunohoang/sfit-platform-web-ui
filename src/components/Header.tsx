@@ -17,11 +17,11 @@ import {
 
 const navigation = [
   { name: 'Trang chủ', href: '/', icon: HomeIcon },
-  { name: 'Bản tin', href: '/news', icon: NewspaperIcon },
   { name: 'Khóa học', href: '/courses', icon: AcademicCapIcon },
-  { name: 'Sự kiện', href: '/events', icon: CalendarIcon },
-  { name: 'Thông báo', href: '/notifications', icon: BellIcon },
   { name: 'Nhiệm vụ', href: '/tasks', icon: ClipboardDocumentListIcon },
+  { name: 'Sự kiện', href: '/events', icon: CalendarIcon },
+  { name: 'Bản tin & Góc chia sẻ', href: '/news', icon: NewspaperIcon },
+  { name: 'Thông báo', href: '/notifications', icon: BellIcon },
 ];
 
 export default function Header() {

@@ -186,20 +186,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Quick Actions */}
-          <div className="card">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Thao tác nhanh</h2>
-            <div className="grid grid-cols-2 gap-3">
-              <Link href="/tasks" className="btn-secondary text-center text-sm py-3">
-                <ClipboardDocumentListIcon className="w-5 h-5 mx-auto mb-1" />
-                Nhiệm vụ
-              </Link>
-              <Link href="/notifications" className="btn-secondary text-center text-sm py-3">
-                <BellIcon className="w-5 h-5 mx-auto mb-1" />
-                Thông báo
-              </Link>
-            </div>
-          </div>
+         
         </div>
       </div>
 

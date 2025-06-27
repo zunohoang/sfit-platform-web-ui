@@ -22,8 +22,7 @@ interface Course {
   id: string;
   title: string;
   description: string;
-  instructor: string;
-  instructorAvatar: string;
+  instructors: Instructor[];
   duration: string;
   totalLessons: number;
   completedLessons: number;
@@ -45,6 +44,12 @@ interface Course {
   objectives: string[];
   modules: Module[];
   reviews: Review[];
+}
+
+interface Instructor {
+  id: string;
+  name: string;
+  avatar: string;
 }
 
 interface Module {
@@ -78,8 +83,18 @@ const mockCourse: Course = {
   id: '1',
   title: 'React.js từ cơ bản đến nâng cao',
   description: 'Khóa học toàn diện về React.js, bao gồm các khái niệm cơ bản, hooks, context, và các pattern nâng cao. Bạn sẽ xây dựng những ứng dụng thực tế và học cách tối ưu hóa performance.',
-  instructor: 'Thầy Nguyễn Văn A',
-  instructorAvatar: '/api/placeholder/60/60',
+  instructors: [
+    {
+      id: '1',
+      name: 'Nguyễn Văn A',
+      avatar: '/api/placeholder/60/60'
+    },
+    {
+      id: '2',
+      name: 'Trần Thị B',
+      avatar: '/api/placeholder/60/60'
+    }
+  ],
   duration: '12 giờ',
   totalLessons: 45,
   completedLessons: 18,
@@ -269,7 +284,7 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
         {/* Main Content */}
         <div className="lg:col-span-2">
           {/* Course Header */}
-          <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
             <div className="flex items-center gap-2 mb-4">
               <span className={`px-3 py-1 rounded-full text-sm font-medium ${levelColors[course.level]}`}>
                 {course.level}
@@ -309,16 +324,25 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
               </div>
             </div>
 
-            {/* Instructor */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary to-green-600 flex items-center justify-center">
-                  <AcademicCapIcon className="w-6 h-6 text-white" />
-                </div>
-              </div>
-              <div>
-                <p className="font-medium text-gray-900">{course.instructor}</p>
-                <p className="text-sm text-gray-600">Giảng viên</p>
+            {/* Instructors */}
+            <div className="mb-6">
+              <h3 className="text-sm font-medium text-gray-700 mb-3">Giảng viên</h3>
+              <div className="space-y-3">
+                {course.instructors.map((instructor) => (
+                  <div key={instructor.id} className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="w-full h-full bg-gradient-to-br from-primary to-green-600 flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">
+                          {instructor.name.charAt(0)}
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">{instructor.name}</p>
+                      <p className="text-sm text-gray-600">Giảng viên</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -336,8 +360,8 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
           </div>
 
           {/* Tabs */}
-          <div className="bg-white rounded-lg shadow-sm border">
-            <div className="border-b">
+          <div className="bg-white rounded-lg shadow-sm">
+            <div className="">
               <nav className="flex">
                 {[
                   { id: 'overview', label: 'Tổng quan' },
@@ -536,7 +560,7 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
 
         {/* Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
+          <div className="bg-white rounded-lg shadow-sm p-6 sticky top-8">
             {/* Video Preview */}
             <div className="aspect-video bg-gray-900 rounded-lg mb-6 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-green-600 flex items-center justify-center">
@@ -573,7 +597,7 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
               ) : (
                 <div>
                   <p className="text-3xl font-bold text-gray-900">
-                    {course.price.toLocaleString('vi-VN')} VNĐ
+                    {course.price.toLocaleString('vi-VN')} VNĐ  
                   </p>
                   {course.originalPrice && (
                     <p className="text-lg text-gray-500 line-through">
@@ -589,7 +613,7 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
               {course.isEnrolled ? (
                 <Link 
                   href={`/courses/${course.id}/learn/${course.modules[0].lessons[0].id}`}
-                  className="btn-primary w-full text-center"
+                  className="btn-primary w-full text-center block"
                 >
                   Tiếp tục học
                 </Link>
@@ -605,7 +629,7 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
             </div>
 
             {/* Course includes */}
-            <div className="mt-6 pt-6 border-t">
+            <div className="mt-6 pt-6">
               <h4 className="font-semibold text-gray-900 mb-4">Khóa học bao gồm:</h4>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3">
@@ -618,7 +642,7 @@ export default function CourseDetailPage({ courseId }: { courseId: string }) {
                 </li>
                 <li className="flex items-center gap-3">
                   <TrophyIcon className="w-4 h-4 text-gray-600" />
-                  <span>Chứng chỉ hoàn thành</span>
+                  <span>500 exp</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <ClockIcon className="w-4 h-4 text-gray-600" />
