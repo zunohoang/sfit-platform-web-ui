@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import { 
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import {
   PlayIcon,
   PauseIcon,
   ChevronLeftIcon,
@@ -18,9 +18,9 @@ import {
   SpeakerXMarkIcon,
   ArrowsPointingOutIcon,
   Cog6ToothIcon,
-  ListBulletIcon
-} from '@heroicons/react/24/outline';
-import { CheckCircleIcon as CheckCircleSolidIcon } from '@heroicons/react/24/solid';
+  ListBulletIcon,
+} from "@heroicons/react/24/outline";
+import { CheckCircleIcon as CheckCircleSolidIcon } from "@heroicons/react/24/solid";
 
 interface CourseData {
   id: string;
@@ -40,7 +40,7 @@ interface Lesson {
   id: string;
   title: string;
   duration: string;
-  type: 'video' | 'reading' | 'quiz' | 'assignment' | 'Zoom';
+  type: "video" | "reading" | "quiz" | "assignment" | "Zoom";
   isCompleted: boolean;
   videoUrl?: string;
   content?: string;
@@ -63,15 +63,15 @@ interface Question {
 }
 
 const mockCourseData: CourseData = {
-  id: '1',
-  title: 'React.js từ cơ bản đến nâng cao',
+  id: "1",
+  title: "React.js từ cơ bản đến nâng cao",
   currentLesson: {
-    id: '1',
-    title: 'React là gì? - Giới thiệu tổng quan',
-    duration: '15 phút',
-    type: 'video',
+    id: "1",
+    title: "React là gì? - Giới thiệu tổng quan",
+    duration: "15 phút",
+    type: "video",
     isCompleted: false,
-    videoUrl: '/api/placeholder/video',
+    videoUrl: "/api/placeholder/video",
     content: `
       <h2>React là gì?</h2>
       <p>React là một thư viện JavaScript mã nguồn mở được phát triển bởi Facebook để xây dựng giao diện người dùng, đặc biệt là cho các ứng dụng web đơn trang (SPA).</p>
@@ -92,111 +92,111 @@ const mockCourseData: CourseData = {
         <li>Có nhiều công cụ và thư viện hỗ trợ</li>
         <li>Khả năng tái sử dụng code cao</li>
       </ul>
-    `
+    `,
   },
   modules: [
     {
-      id: '1',
-      title: 'Giới thiệu về React',
+      id: "1",
+      title: "Giới thiệu về React",
       isExpanded: true,
       lessons: [
         {
-          id: '1',
-          title: 'React là gì?',
-          duration: '15 phút',
-          type: 'video',
-          isCompleted: false
+          id: "1",
+          title: "React là gì?",
+          duration: "15 phút",
+          type: "video",
+          isCompleted: false,
         },
         {
-          id: '2',
-          title: 'Cài đặt môi trường',
-          duration: '20 phút',
-          type: 'video',
-          isCompleted: false
+          id: "2",
+          title: "Cài đặt môi trường",
+          duration: "20 phút",
+          type: "video",
+          isCompleted: false,
         },
         {
-          id: '3',
-          title: 'JSX và Components',
-          duration: '25 phút',
-          type: 'video',
-          isCompleted: false
+          id: "3",
+          title: "JSX và Components",
+          duration: "25 phút",
+          type: "video",
+          isCompleted: false,
         },
         {
-          id: '4',
-          title: 'Bài đọc: Lịch sử React',
-          duration: '10 phút',
-          type: 'reading',
-          isCompleted: false
+          id: "4",
+          title: "Bài đọc: Lịch sử React",
+          duration: "10 phút",
+          type: "reading",
+          isCompleted: false,
         },
         {
-            id: '5',
-            title: 'Học online',
-            duration: '2 tiếng',
-            type: 'video',
-            isCompleted: false
+          id: "5",
+          title: "Học online",
+          duration: "2 tiếng",
+          type: "video",
+          isCompleted: false,
         },
         {
-            id: '6',
-            title: 'Học bù offline SSLAB',
-            duration: '2 tiếng',
-            type: 'video',
-            isCompleted: false
+          id: "6",
+          title: "Học bù offline SSLAB",
+          duration: "2 tiếng",
+          type: "video",
+          isCompleted: false,
         },
         {
-          id: '7',
-          title: 'Quiz: Kiểm tra kiến thức cơ bản',
-          duration: '5 phút',
-          type: 'quiz',
+          id: "7",
+          title: "Quiz: Kiểm tra kiến thức cơ bản",
+          duration: "5 phút",
+          type: "quiz",
           isCompleted: false,
           quiz: {
             questions: [
               {
-                id: '1',
-                question: 'React được phát triển bởi công ty nào?',
-                options: ['Google', 'Facebook', 'Microsoft', 'Apple'],
-                correctAnswer: 1
+                id: "1",
+                question: "React được phát triển bởi công ty nào?",
+                options: ["Google", "Facebook", "Microsoft", "Apple"],
+                correctAnswer: 1,
               },
               {
-                id: '2',
-                question: 'Virtual DOM là gì?',
+                id: "2",
+                question: "Virtual DOM là gì?",
                 options: [
-                  'Một cách để tạo ra DOM thật',
-                  'Một bản sao nhẹ của DOM thật trong bộ nhớ',
-                  'Một thư viện JavaScript',
-                  'Một framework CSS'
+                  "Một cách để tạo ra DOM thật",
+                  "Một bản sao nhẹ của DOM thật trong bộ nhớ",
+                  "Một thư viện JavaScript",
+                  "Một framework CSS",
                 ],
-                correctAnswer: 1
-              }
+                correctAnswer: 1,
+              },
             ],
             currentQuestion: 0,
             userAnswers: [],
-            isSubmitted: false
-          }
-        }
-      ]
+            isSubmitted: false,
+          },
+        },
+      ],
     },
     {
-      id: '2',
-      title: 'React Hooks',
+      id: "2",
+      title: "React Hooks",
       isExpanded: false,
       lessons: [
         {
-          id: '6',
-          title: 'useState Hook',
-          duration: '30 phút',
-          type: 'video',
-          isCompleted: false
+          id: "6",
+          title: "useState Hook",
+          duration: "30 phút",
+          type: "video",
+          isCompleted: false,
         },
         {
-          id: '7',
-          title: 'useEffect Hook',
-          duration: '35 phút',
-          type: 'video',
-          isCompleted: false
-        }
-      ]
-    }
-  ]
+          id: "7",
+          title: "useEffect Hook",
+          duration: "35 phút",
+          type: "video",
+          isCompleted: false,
+        },
+      ],
+    },
+  ],
 };
 
 const typeIcons = {
@@ -204,10 +204,16 @@ const typeIcons = {
   reading: BookOpenIcon,
   quiz: DocumentTextIcon,
   assignment: AcademicCapIcon,
-  Zoom: PlayIcon // Sử dụng PlayIcon cho Zoom meetings
+  Zoom: PlayIcon, // Sử dụng PlayIcon cho Zoom meetings
 };
 
-export default function CourseLearningPage({ courseId, lessonId }: { courseId: string; lessonId: string }) {
+export default function CourseLearningPage({
+  courseId,
+  lessonId,
+}: {
+  courseId: string;
+  lessonId: string;
+}) {
   const [courseData, setCourseData] = useState(mockCourseData);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -216,74 +222,85 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(900); // 15 minutes in seconds
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState("");
   const [showNotes, setShowNotes] = useState(false);
-  
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const currentLesson = courseData.currentLesson;
 
   // Calculate lesson progress
-  const totalLessons = courseData.modules.reduce((total, module) => total + module.lessons.length, 0);
-  const completedLessons = courseData.modules.reduce((total, module) => 
-    total + module.lessons.filter(lesson => lesson.isCompleted).length, 0
+  const totalLessons = courseData.modules.reduce(
+    (total, module) => total + module.lessons.length,
+    0
+  );
+  const completedLessons = courseData.modules.reduce(
+    (total, module) =>
+      total + module.lessons.filter((lesson) => lesson.isCompleted).length,
+    0
   );
 
   const toggleModule = (moduleId: string) => {
-    setCourseData(prev => ({
+    setCourseData((prev) => ({
       ...prev,
-      modules: prev.modules.map(module => 
-        module.id === moduleId 
+      modules: prev.modules.map((module) =>
+        module.id === moduleId
           ? { ...module, isExpanded: !module.isExpanded }
           : module
-      )
+      ),
     }));
   };
 
   const selectLesson = (lesson: Lesson) => {
-    setCourseData(prev => ({
+    setCourseData((prev) => ({
       ...prev,
-      currentLesson: lesson
+      currentLesson: lesson,
     }));
     setCurrentTime(0);
     setIsPlaying(false);
   };
 
   const markLessonComplete = () => {
-    setCourseData(prev => ({
+    setCourseData((prev) => ({
       ...prev,
-      modules: prev.modules.map(module => ({
+      modules: prev.modules.map((module) => ({
         ...module,
-        lessons: module.lessons.map(lesson => 
-          lesson.id === currentLesson.id 
+        lessons: module.lessons.map((lesson) =>
+          lesson.id === currentLesson.id
             ? { ...lesson, isCompleted: true }
             : lesson
-        )
+        ),
       })),
-      currentLesson: { ...prev.currentLesson, isCompleted: true }
+      currentLesson: { ...prev.currentLesson, isCompleted: true },
     }));
   };
 
   const getNextLesson = () => {
-    const allLessons = courseData.modules.flatMap(module => module.lessons);
-    const currentIndex = allLessons.findIndex(lesson => lesson.id === currentLesson.id);
-    return currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
+    const allLessons = courseData.modules.flatMap((module) => module.lessons);
+    const currentIndex = allLessons.findIndex(
+      (lesson) => lesson.id === currentLesson.id
+    );
+    return currentIndex < allLessons.length - 1
+      ? allLessons[currentIndex + 1]
+      : null;
   };
 
   const getPreviousLesson = () => {
-    const allLessons = courseData.modules.flatMap(module => module.lessons);
-    const currentIndex = allLessons.findIndex(lesson => lesson.id === currentLesson.id);
+    const allLessons = courseData.modules.flatMap((module) => module.lessons);
+    const currentIndex = allLessons.findIndex(
+      (lesson) => lesson.id === currentLesson.id
+    );
     return currentIndex > 0 ? allLessons[currentIndex - 1] : null;
   };
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
   const renderLessonContent = () => {
     switch (currentLesson.type) {
-      case 'video':
+      case "video":
         return (
           <div className="relative bg-black rounded-lg overflow-hidden">
             {/* Video Player */}
@@ -291,11 +308,13 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
                 <div className="text-center text-white">
                   <PlayIcon className="w-20 h-20 mx-auto mb-4 opacity-80" />
-                  <h3 className="text-xl font-semibold mb-2">{currentLesson.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {currentLesson.title}
+                  </h3>
                   <p className="text-blue-200">Video sẽ được tải ở đây</p>
                 </div>
               </div>
-              
+
               {/* Video Controls */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                 {/* Progress Bar */}
@@ -303,7 +322,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                   <div className="flex items-center gap-2 text-white text-sm mb-2">
                     <span>{formatTime(currentTime)}</span>
                     <div className="flex-1 bg-white/20 rounded-full h-1">
-                      <div 
+                      <div
                         className="bg-white h-1 rounded-full transition-all"
                         style={{ width: `${(currentTime / duration) * 100}%` }}
                       ></div>
@@ -311,7 +330,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                     <span>{formatTime(duration)}</span>
                   </div>
                 </div>
-                
+
                 {/* Control Buttons */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -325,7 +344,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                         <PlayIcon className="w-8 h-8" />
                       )}
                     </button>
-                    
+
                     <button
                       onClick={() => setIsMuted(!isMuted)}
                       className="text-white hover:text-blue-300 transition-colors"
@@ -337,7 +356,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                       )}
                     </button>
 
-                    <select 
+                    <select
                       value={playbackSpeed}
                       onChange={(e) => setPlaybackSpeed(Number(e.target.value))}
                       className="bg-black/50 text-white text-sm rounded px-2 py-1"
@@ -355,7 +374,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                     <button className="text-white hover:text-blue-300 transition-colors">
                       <Cog6ToothIcon className="w-6 h-6" />
                     </button>
-                    
+
                     <button
                       onClick={() => setIsFullscreen(!isFullscreen)}
                       className="text-white hover:text-blue-300 transition-colors"
@@ -369,22 +388,22 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
           </div>
         );
 
-      case 'reading':
+      case "reading":
         return (
           <div className="bg-white rounded-lg p-8">
-            <div 
+            <div
               className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: currentLesson.content || '' }}
+              dangerouslySetInnerHTML={{ __html: currentLesson.content || "" }}
             />
           </div>
         );
 
-      case 'quiz':
+      case "quiz":
         const quiz = currentLesson.quiz;
         if (!quiz) return null;
 
         const currentQuestion = quiz.questions[quiz.currentQuestion];
-        
+
         return (
           <div className="bg-white rounded-lg p-8">
             <div className="mb-6">
@@ -396,11 +415,15 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                   Quiz: {currentLesson.title}
                 </div>
               </div>
-              
+
               <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
-                <div 
+                <div
                   className="bg-primary h-2 rounded-full transition-all"
-                  style={{ width: `${((quiz.currentQuestion + 1) / quiz.questions.length) * 100}%` }}
+                  style={{
+                    width: `${
+                      ((quiz.currentQuestion + 1) / quiz.questions.length) * 100
+                    }%`,
+                  }}
                 ></div>
               </div>
             </div>
@@ -409,10 +432,13 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
               <h4 className="text-lg font-medium text-gray-900 mb-6">
                 {currentQuestion.question}
               </h4>
-              
+
               <div className="space-y-3">
                 {currentQuestion.options.map((option, index) => (
-                  <label key={index} className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                  <label
+                    key={index}
+                    className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                  >
                     <input
                       type="radio"
                       name={`question-${currentQuestion.id}`}
@@ -427,21 +453,17 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
             </div>
 
             <div className="flex justify-between">
-              <button 
+              <button
                 disabled={quiz.currentQuestion === 0}
                 className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Câu trước
               </button>
-              
+
               {quiz.currentQuestion < quiz.questions.length - 1 ? (
-                <button className="btn-primary">
-                  Câu tiếp theo
-                </button>
+                <button className="btn-primary">Câu tiếp theo</button>
               ) : (
-                <button className="btn-primary">
-                  Nộp bài
-                </button>
+                <button className="btn-primary">Nộp bài</button>
               )}
             </div>
           </div>
@@ -455,31 +477,33 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-white border-b border-gray-100 p-2 shadow-sm">
+      <div className="bg-white border-b border-gray-100 p-2 shadow-sm sticky top-0 z-50">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 md:gap-4">
             {/* Back Button and Logo */}
             <div className="flex items-center gap-2 md:gap-3">
-              <Link 
+              <Link
                 href="/courses"
                 className="text-gray-400 hover:text-gray-600 p-1 md:p-2 rounded-lg hover:bg-gray-50 transition-all"
               >
                 <ChevronLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
               </Link>
-              
+
               <div className="flex items-center gap-2">
                 <Link href="/">
-                  <img 
-                    src="https://www.sfit.com.vn/assets/logoCLB-DTD9nCuy.jpg" 
-                    alt="SFIT Logo" 
+                  <img
+                    src="https://www.sfit.com.vn/assets/logoCLB-DTD9nCuy.jpg"
+                    alt="SFIT Logo"
                     className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity"
                   />
                 </Link>
               </div>
             </div>
-            
+
             <div className="hidden sm:block">
-              <h1 className="text-lg md:text-xl font-semibold text-gray-900">| {courseData.title}</h1>
+              <h1 className="text-lg md:text-xl font-semibold text-gray-900">
+                | {courseData.title}
+              </h1>
             </div>
           </div>
 
@@ -488,9 +512,13 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
             <div className="flex items-center gap-2 md:gap-4 bg-white px-2 md:px-4 py-1 md:py-2 rounded-lg">
               <div className="flex items-center gap-2 md:gap-3">
                 <div className="w-16 md:w-28 bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${Math.round((completedLessons / totalLessons) * 100)}%` }}
+                    style={{
+                      width: `${Math.round(
+                        (completedLessons / totalLessons) * 100
+                      )}%`,
+                    }}
                   />
                 </div>
                 <div className="flex items-center gap-1 md:gap-2">
@@ -502,17 +530,43 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                   </span>
                 </div>
               </div>
-              
+
               {/* Action Icons */}
               <div className="hidden md:flex items-center gap-2 ml-2 border-l border-gray-200 pl-3">
-                <button className="p-1.5 rounded-md hover:bg-gray-100 transition-colors" title="Ghi chú">
-                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                <button
+                  className="p-1.5 rounded-md hover:bg-gray-100 transition-colors"
+                  title="Ghi chú"
+                >
+                  <svg
+                    className="w-4 h-4 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    />
                   </svg>
                 </button>
-                <button className="p-1.5 rounded-md hover:bg-gray-100 transition-colors" title="Hướng dẫn">
-                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <button
+                  className="p-1.5 rounded-md hover:bg-gray-100 transition-colors"
+                  title="Hướng dẫn"
+                >
+                  <svg
+                    className="w-4 h-4 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </button>
               </div>
@@ -524,11 +578,11 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
       {/* Main Layout */}
       <div className="flex flex-1 flex-col lg:flex-row">
         {/* Sidebar */}
-        <div className={`bg-white shadow-lg transition-all duration-300 ${
-          sidebarOpen 
-            ? 'w-full lg:w-96 h-64 lg:h-auto' 
-            : 'w-0 h-0 lg:h-auto'
-        } overflow-hidden absolute lg:static top-0 left-0 right-0 z-40`}>
+        <div
+          className={`bg-white shadow-lg transition-all duration-300 ${
+            sidebarOpen ? "w-full lg:w-96 h-64 lg:h-auto" : "w-0 h-0 lg:h-auto"
+          } overflow-hidden absolute lg:static top-0 left-0 right-0 z-40`}
+        >
           <div className="overflow-y-auto h-full pb-20">
             {courseData.modules.map((module) => (
               <div key={module.id} className="border-b border-gray-50">
@@ -536,39 +590,51 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                   onClick={() => toggleModule(module.id)}
                   className="w-full p-3 lg:p-4 text-left hover:bg-gray-25 flex items-center justify-between transition-colors"
                 >
-                  <span className="font-medium text-gray-900 text-sm lg:text-base">{module.title}</span>
+                  <span className="font-medium text-gray-900 text-sm lg:text-base">
+                    {module.title}
+                  </span>
                   {module.isExpanded ? (
                     <ChevronUpIcon className="w-4 h-4 lg:w-5 lg:h-5 text-gray-400" />
                   ) : (
                     <ChevronDownIcon className="w-4 h-4 lg:w-5 lg:h-5 text-gray-400" />
                   )}
                 </button>
-                
+
                 {module.isExpanded && (
                   <div className="pb-2 bg-gray-25/50">
                     {module.lessons.map((lesson) => {
                       const IconComponent = typeIcons[lesson.type];
                       const isActive = lesson.id === currentLesson.id;
-                      
+
                       return (
                         <button
                           key={lesson.id}
                           onClick={() => selectLesson(lesson)}
                           className={`w-full p-2 lg:p-3 text-left hover:bg-gray-50 flex items-center gap-2 lg:gap-3 transition-all duration-200 ${
-                            isActive ? 'bg-green-50/70 border-r-3 border-green-400 shadow-sm' : ''
+                            isActive
+                              ? "bg-green-50/70 border-r-3 border-green-400 shadow-sm"
+                              : ""
                           }`}
                         >
-                          <IconComponent className={`w-3 h-3 lg:w-4 lg:h-4 ${isActive ? 'text-green-500' : 'text-gray-400'}`} />
-                          
+                          <IconComponent
+                            className={`w-3 h-3 lg:w-4 lg:h-4 ${
+                              isActive ? "text-green-500" : "text-gray-400"
+                            }`}
+                          />
+
                           <div className="flex-1 min-w-0">
-                            <p className={`text-xs lg:text-sm font-medium truncate ${
-                              isActive ? 'text-green-600' : 'text-gray-700'
-                            }`}>
+                            <p
+                              className={`text-xs lg:text-sm font-medium truncate ${
+                                isActive ? "text-green-600" : "text-gray-700"
+                              }`}
+                            >
                               {lesson.title}
                             </p>
-                            <p className="text-xs text-gray-400">{lesson.duration}</p>
+                            <p className="text-xs text-gray-400">
+                              {lesson.duration}
+                            </p>
                           </div>
-                          
+
                           {lesson.isCompleted && (
                             <CheckCircleSolidIcon className="w-4 h-4 lg:w-5 lg:h-5 text-green-500" />
                           )}
@@ -590,12 +656,14 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
               {renderLessonContent()}
 
               {/* Navigation */}
-              <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-6'>
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-6">
                 <div className="rounded-lg p-3 lg:p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl lg:text-2xl font-bold text-gray-900">{currentLesson.title}</h2>
+                    <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
+                      {currentLesson.title}
+                    </h2>
                   </div>
-        
+
                   <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
                     <span className="flex items-center gap-1">
                       <ClockIcon className="w-4 h-4" />
@@ -605,9 +673,11 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                   </div>
 
                   {currentLesson.content && (
-                    <div 
+                    <div
                       className="prose prose-sm lg:prose-lg max-w-none"
-                      dangerouslySetInnerHTML={{ __html: currentLesson.content }}
+                      dangerouslySetInnerHTML={{
+                        __html: currentLesson.content,
+                      }}
                     />
                   )}
                 </div>
@@ -624,7 +694,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
                       </button>
                     )}
                   </div>
-                  
+
                   <div>
                     {getNextLesson() && (
                       <button
@@ -646,7 +716,9 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
           {showNotes && (
             <div className="bg-white border-t border-gray-100 p-4 shadow-lg">
               <div className="max-w-4xl mx-auto">
-                <h3 className="font-semibold text-gray-900 mb-3">Ghi chú của bạn</h3>
+                <h3 className="font-semibold text-gray-900 mb-3">
+                  Ghi chú của bạn
+                </h3>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
@@ -666,7 +738,7 @@ export default function CourseLearningPage({ courseId, lessonId }: { courseId: s
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
         className={`fixed bottom-4 left-4 lg:bottom-6 lg:left-6 z-50 p-3 lg:p-4 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
-          sidebarOpen ? 'lg:translate-x-96' : 'translate-x-0'
+          sidebarOpen ? "lg:translate-x-96" : "translate-x-0"
         }`}
       >
         <ListBulletIcon className="w-5 h-5 lg:w-6 lg:h-6" />

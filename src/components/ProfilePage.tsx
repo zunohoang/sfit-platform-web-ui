@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import AvatarUploadModal from './AvatarUploadModal';
+import { useState } from "react";
+import Link from "next/link";
+import AvatarUploadModal from "./AvatarUploadModal";
 import {
   UserIcon,
   PencilIcon,
@@ -20,64 +20,65 @@ import {
   BellIcon,
   EyeIcon,
   CheckCircleIcon,
-  XMarkIcon
-} from '@heroicons/react/24/outline';
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 // Sample user data
 const userData = {
   id: 1,
-  name: 'Nguyễn Văn A',
-  email: 'nguyen.van.a@student.university.edu.vn',
-  phone: '0123456789',
-  avatar: '/api/placeholder/150/150',
-  coverImage: '/api/placeholder/800/200',
-  bio: 'Sinh viên năm 3 ngành Công nghệ thông tin, đam mê lập trình web và AI. Hiện đang tham gia các dự án về React.js và Python.',
-  location: 'TP. Hồ Chí Minh',
-  joinDate: '2023-09-15',
-  studentId: 'IT2021001',
-  major: 'Công nghệ thông tin',
-  year: 'Năm 3',
+  name: "Nguyễn Văn A",
+  email: "nguyen.van.a@student.university.edu.vn",
+  phone: "0123456789",
+  avatar: "/api/placeholder/150/150",
+  coverImage: "/api/placeholder/800/200",
+  bio: "Sinh viên năm 3 ngành Công nghệ thông tin, đam mê lập trình web và AI. Hiện đang tham gia các dự án về React.js và Python.",
+  location: "TP. Hồ Chí Minh",
+  joinDate: "2023-09-15",
+  studentId: "IT2021001",
+  major: "Công nghệ thông tin",
+  year: "Năm 3",
   gpa: 3.75,
   socialLinks: {
-    github: 'https://github.com/nguyenvana',
-    linkedin: 'https://linkedin.com/in/nguyenvana',
-    facebook: 'https://facebook.com/nguyenvana'
+    github: "https://github.com/nguyenvana",
+    linkedin: "https://linkedin.com/in/nguyenvana",
+    facebook: "https://facebook.com/nguyenvana",
   },
   skills: [
-    { name: 'JavaScript', level: 85, category: 'Programming' },
-    { name: 'React.js', level: 80, category: 'Frontend' },
-    { name: 'Python', level: 75, category: 'Programming' },
-    { name: 'Node.js', level: 70, category: 'Backend' },
-    { name: 'HTML/CSS', level: 90, category: 'Frontend' },
-    { name: 'Git', level: 85, category: 'Tools' },
-    { name: 'MongoDB', level: 65, category: 'Database' },
-    { name: 'Docker', level: 60, category: 'DevOps' }
+    { name: "JavaScript", level: 85, category: "Programming" },
+    { name: "React.js", level: 80, category: "Frontend" },
+    { name: "Python", level: 75, category: "Programming" },
+    { name: "Node.js", level: 70, category: "Backend" },
+    { name: "HTML/CSS", level: 90, category: "Frontend" },
+    { name: "Git", level: 85, category: "Tools" },
+    { name: "MongoDB", level: 65, category: "Database" },
+    { name: "Docker", level: 60, category: "DevOps" },
   ],
   achievements: [
     {
       id: 1,
-      title: 'Hoàn thành khóa React.js',
-      description: 'Đã hoàn thành xuất sắc khóa học React.js từ cơ bản đến nâng cao',
-      date: '2025-01-15',
-      type: 'course',
-      badge: '🎓'
+      title: "Hoàn thành khóa React.js",
+      description:
+        "Đã hoàn thành xuất sắc khóa học React.js từ cơ bản đến nâng cao",
+      date: "2025-01-15",
+      type: "course",
+      badge: "🎓",
     },
     {
       id: 2,
-      title: 'Top 10 Logo Design Contest',
-      description: 'Đạt giải trong top 10 cuộc thi thiết kế logo câu lạc bộ',
-      date: '2025-01-11',
-      type: 'contest',
-      badge: '🏆'
+      title: "Top 10 Logo Design Contest",
+      description: "Đạt giải trong top 10 cuộc thi thiết kế logo câu lạc bộ",
+      date: "2025-01-11",
+      type: "contest",
+      badge: "🏆",
     },
     {
       id: 3,
-      title: 'Workshop AI Certificate',
-      description: 'Hoàn thành workshop AI và Machine Learning',
-      date: '2025-01-08',
-      type: 'workshop',
-      badge: '🤖'
-    }
+      title: "Workshop AI Certificate",
+      description: "Hoàn thành workshop AI và Machine Learning",
+      date: "2025-01-08",
+      type: "workshop",
+      badge: "🤖",
+    },
   ],
   statistics: {
     coursesCompleted: 3,
@@ -85,20 +86,20 @@ const userData = {
     eventsAttended: 8,
     tasksCompleted: 15,
     totalPoints: 850,
-    rankInClub: 12
+    rankInClub: 12,
   },
   preferences: {
     emailNotifications: true,
     pushNotifications: true,
     weeklyDigest: true,
     eventReminders: true,
-    profileVisibility: 'public'
-  }
+    profileVisibility: "public",
+  },
 };
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState("overview");
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [userAvatar, setUserAvatar] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -108,19 +109,19 @@ export default function ProfilePage() {
     location: userData.location,
     github: userData.socialLinks.github,
     linkedin: userData.socialLinks.linkedin,
-    facebook: userData.socialLinks.facebook
+    facebook: userData.socialLinks.facebook,
   });
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleSave = () => {
     // In a real app, this would save to database
-    console.log('Saving profile data:', formData);
+    console.log("Saving profile data:", formData);
     setIsEditing(false);
   };
 
@@ -132,7 +133,7 @@ export default function ProfilePage() {
       location: userData.location,
       github: userData.socialLinks.github,
       linkedin: userData.socialLinks.linkedin,
-      facebook: userData.socialLinks.facebook
+      facebook: userData.socialLinks.facebook,
     });
     setIsEditing(false);
   };
@@ -148,12 +149,27 @@ export default function ProfilePage() {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Tổng quan', icon: UserIcon },
-    { id: 'achievements', label: 'Thành tích', icon: TrophyIcon, link: '/profile/achievements' },
-    { id: 'skills', label: 'Kỹ năng', icon: AcademicCapIcon },
-    { id: 'statistics', label: 'Thống kê', icon: ChartBarIcon },
-    { id: 'activity', label: 'Hoạt động', icon: ChartBarIcon, link: '/profile/activity' },
-    { id: 'settings', label: 'Cài đặt', icon: CogIcon, link: '/profile/settings' }
+    { id: "overview", label: "Tổng quan", icon: UserIcon },
+    {
+      id: "achievements",
+      label: "Thành tích",
+      icon: TrophyIcon,
+      link: "/profile/achievements",
+    },
+    { id: "skills", label: "Kỹ năng", icon: AcademicCapIcon },
+    { id: "statistics", label: "Thống kê", icon: ChartBarIcon },
+    {
+      id: "activity",
+      label: "Hoạt động",
+      icon: ChartBarIcon,
+      link: "/profile/activity",
+    },
+    {
+      id: "settings",
+      label: "Cài đặt",
+      icon: CogIcon,
+      link: "/profile/settings",
+    },
   ];
 
   return (
@@ -230,28 +246,34 @@ export default function ProfilePage() {
           {/* Left Column - Basic Info */}
           <div className="lg:col-span-1">
             <div className="card">
-              <div className="text-center mb-6">
+              <div className=" mb-6">
                 {isEditing ? (
                   <input
                     type="text"
                     value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
                     className="text-2xl font-bold text-gray-900 text-center w-full border-b border-gray-300 focus:border-[#267452] outline-none"
                   />
                 ) : (
-                  <h1 className="text-2xl font-bold text-gray-900">{userData.name}</h1>
+                  <h1 className="text-2xl font-bold text-gray-900">
+                    {userData.name}
+                  </h1>
                 )}
-                <p className="text-gray-600 mt-1">{userData.studentId} • {userData.major}</p>
+                <p className="text-gray-600 mt-1">
+                  {userData.studentId} • {userData.major}
+                </p>
                 <p className="text-gray-500 text-sm">{userData.year}</p>
               </div>
 
               {/* Bio */}
               <div className="mb-6">
-                <h3 className="text-sm font-semibold text-gray-700 mb-2">Giới thiệu</h3>
+                <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                  Giới thiệu
+                </h3>
                 {isEditing ? (
                   <textarea
                     value={formData.bio}
-                    onChange={(e) => handleInputChange('bio', e.target.value)}
+                    onChange={(e) => handleInputChange("bio", e.target.value)}
                     rows={4}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#267452] focus:border-transparent outline-none text-sm"
                   />
@@ -272,7 +294,9 @@ export default function ProfilePage() {
                     <input
                       type="text"
                       value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("phone", e.target.value)
+                      }
                       className="flex-1 border-b border-gray-300 focus:border-[#267452] outline-none"
                     />
                   ) : (
@@ -285,7 +309,9 @@ export default function ProfilePage() {
                     <input
                       type="text"
                       value={formData.location}
-                      onChange={(e) => handleInputChange('location', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("location", e.target.value)
+                      }
                       className="flex-1 border-b border-gray-300 focus:border-[#267452] outline-none"
                     />
                   ) : (
@@ -294,32 +320,49 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex items-center text-sm text-gray-600">
                   <CalendarIcon className="w-4 h-4 mr-3 text-[#267452]" />
-                  <span>Tham gia từ {new Date(userData.joinDate).toLocaleDateString('vi-VN')}</span>
+                  <span>
+                    Tham gia từ{" "}
+                    {new Date(userData.joinDate).toLocaleDateString("vi-VN")}
+                  </span>
                 </div>
               </div>
 
               {/* Social Links */}
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-700 mb-3">Liên kết xã hội</h3>
+                <h3 className="text-sm font-semibold text-gray-700 mb-3">
+                  Liên kết xã hội
+                </h3>
                 <div className="space-y-2">
-                  {['github', 'linkedin', 'facebook'].map((platform) => (
+                  {["github", "linkedin", "facebook"].map((platform) => (
                     <div key={platform} className="flex items-center text-sm">
-                      <span className="w-16 text-gray-600 capitalize">{platform}:</span>
+                      <span className="w-16 text-gray-600 capitalize">
+                        {platform}:
+                      </span>
                       {isEditing ? (
                         <input
                           type="url"
                           value={formData[platform as keyof typeof formData]}
-                          onChange={(e) => handleInputChange(platform, e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(platform, e.target.value)
+                          }
                           className="flex-1 ml-2 border-b border-gray-300 focus:border-[#267452] outline-none text-[#267452]"
                         />
                       ) : (
                         <a
-                          href={userData.socialLinks[platform as keyof typeof userData.socialLinks]}
+                          href={
+                            userData.socialLinks[
+                              platform as keyof typeof userData.socialLinks
+                            ]
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                           className="ml-2 text-[#267452] hover:underline"
                         >
-                          {userData.socialLinks[platform as keyof typeof userData.socialLinks]}
+                          {
+                            userData.socialLinks[
+                              platform as keyof typeof userData.socialLinks
+                            ]
+                          }
                         </a>
                       )}
                     </div>
@@ -353,10 +396,11 @@ export default function ProfilePage() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center px-4 py-2 text-sm font-medium border-b-2 transition-colors duration-200 ${activeTab === tab.id
-                        ? 'border-[#267452] text-[#267452]'
-                        : 'border-transparent text-gray-600 hover:text-gray-900'
-                      }`}
+                    className={`flex items-center px-4 py-2 text-sm font-medium border-b-2 transition-colors duration-200 ${
+                      activeTab === tab.id
+                        ? "border-[#267452] text-[#267452]"
+                        : "border-transparent text-gray-600 hover:text-gray-900"
+                    }`}
                   >
                     <IconComponent className="w-4 h-4 mr-2" />
                     {tab.label}
@@ -368,26 +412,42 @@ export default function ProfilePage() {
             {/* Tab Content */}
             <div className="space-y-6">
               {/* Overview Tab */}
-              {activeTab === 'overview' && (
+              {activeTab === "overview" && (
                 <div className="space-y-6">
                   {/* Quick Stats */}
                   <div className="card">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Thống kê nhanh</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">
+                      Thống kê nhanh
+                    </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-[#267452]">{userData.statistics.coursesCompleted}</p>
-                        <p className="text-sm text-gray-600">Khóa học hoàn thành</p>
+                        <p className="text-2xl font-bold text-[#267452]">
+                          {userData.statistics.coursesCompleted}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Khóa học hoàn thành
+                        </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-[#267452]">{userData.statistics.eventsAttended}</p>
-                        <p className="text-sm text-gray-600">Sự kiện tham gia</p>
+                        <p className="text-2xl font-bold text-[#267452]">
+                          {userData.statistics.eventsAttended}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Sự kiện tham gia
+                        </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-[#267452]">{userData.statistics.tasksCompleted}</p>
-                        <p className="text-sm text-gray-600">Nhiệm vụ hoàn thành</p>
+                        <p className="text-2xl font-bold text-[#267452]">
+                          {userData.statistics.tasksCompleted}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Nhiệm vụ hoàn thành
+                        </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-[#267452]">{userData.statistics.totalPoints}</p>
+                        <p className="text-2xl font-bold text-[#267452]">
+                          {userData.statistics.totalPoints}
+                        </p>
                         <p className="text-sm text-gray-600">Tổng điểm</p>
                       </div>
                     </div>
@@ -395,7 +455,9 @@ export default function ProfilePage() {
 
                   {/* Quick Links */}
                   <div className="card">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Liên kết nhanh</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">
+                      Liên kết nhanh
+                    </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <Link
                         href="/profile/achievements"
@@ -405,8 +467,12 @@ export default function ProfilePage() {
                           <TrophyIcon className="w-6 h-6 text-yellow-700" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-900">Thành tích</h4>
-                          <p className="text-sm text-gray-600">Xem chi tiết thành tích và huy hiệu</p>
+                          <h4 className="font-semibold text-gray-900">
+                            Thành tích
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            Xem chi tiết thành tích và huy hiệu
+                          </p>
                         </div>
                       </Link>
 
@@ -418,8 +484,12 @@ export default function ProfilePage() {
                           <ChartBarIcon className="w-6 h-6 text-blue-700" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-900">Hoạt động</h4>
-                          <p className="text-sm text-gray-600">Lịch sử hoạt động và tiến độ</p>
+                          <h4 className="font-semibold text-gray-900">
+                            Hoạt động
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            Lịch sử hoạt động và tiến độ
+                          </p>
                         </div>
                       </Link>
 
@@ -431,8 +501,12 @@ export default function ProfilePage() {
                           <CogIcon className="w-6 h-6 text-gray-700" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-900">Cài đặt</h4>
-                          <p className="text-sm text-gray-600">Quản lý tài khoản và tùy chọn</p>
+                          <h4 className="font-semibold text-gray-900">
+                            Cài đặt
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            Quản lý tài khoản và tùy chọn
+                          </p>
                         </div>
                       </Link>
                     </div>
@@ -440,15 +514,28 @@ export default function ProfilePage() {
 
                   {/* Recent Achievements */}
                   <div className="card">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Thành tích gần đây</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">
+                      Thành tích gần đây
+                    </h3>
                     <div className="space-y-3">
                       {userData.achievements.slice(0, 3).map((achievement) => (
-                        <div key={achievement.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                        <div
+                          key={achievement.id}
+                          className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+                        >
                           <span className="text-2xl">{achievement.badge}</span>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900">{achievement.title}</h4>
-                            <p className="text-sm text-gray-600">{achievement.description}</p>
-                            <p className="text-xs text-gray-500">{new Date(achievement.date).toLocaleDateString('vi-VN')}</p>
+                            <h4 className="font-semibold text-gray-900">
+                              {achievement.title}
+                            </h4>
+                            <p className="text-sm text-gray-600">
+                              {achievement.description}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              {new Date(achievement.date).toLocaleDateString(
+                                "vi-VN"
+                              )}
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -458,23 +545,36 @@ export default function ProfilePage() {
               )}
 
               {/* Achievements Tab */}
-              {activeTab === 'achievements' && (
+              {activeTab === "achievements" && (
                 <div className="card">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Tất cả thành tích</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">
+                    Tất cả thành tích
+                  </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {userData.achievements.map((achievement) => (
-                      <div key={achievement.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
+                      <div
+                        key={achievement.id}
+                        className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
+                      >
                         <div className="flex items-center space-x-3 mb-3">
                           <span className="text-3xl">{achievement.badge}</span>
                           <div>
-                            <h4 className="font-semibold text-gray-900">{achievement.title}</h4>
+                            <h4 className="font-semibold text-gray-900">
+                              {achievement.title}
+                            </h4>
                             <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
                               {achievement.type}
                             </span>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 mb-2">{achievement.description}</p>
-                        <p className="text-xs text-gray-500">{new Date(achievement.date).toLocaleDateString('vi-VN')}</p>
+                        <p className="text-sm text-gray-600 mb-2">
+                          {achievement.description}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {new Date(achievement.date).toLocaleDateString(
+                            "vi-VN"
+                          )}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -482,20 +582,26 @@ export default function ProfilePage() {
               )}
 
               {/* Skills Tab */}
-              {activeTab === 'skills' && (
+              {activeTab === "skills" && (
                 <div className="card">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Kỹ năng</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">
+                    Kỹ năng
+                  </h3>
                   <div className="space-y-4">
                     {userData.skills.map((skill, index) => (
                       <div key={index}>
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
-                            <span className="font-medium text-gray-900">{skill.name}</span>
+                            <span className="font-medium text-gray-900">
+                              {skill.name}
+                            </span>
                             <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
                               {skill.category}
                             </span>
                           </div>
-                          <span className="text-sm text-gray-600">{skill.level}%</span>
+                          <span className="text-sm text-gray-600">
+                            {skill.level}%
+                          </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
@@ -510,24 +616,36 @@ export default function ProfilePage() {
               )}
 
               {/* Statistics Tab */}
-              {activeTab === 'statistics' && (
+              {activeTab === "statistics" && (
                 <div className="space-y-6">
                   <div className="card">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Thống kê chi tiết</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">
+                      Thống kê chi tiết
+                    </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div className="text-center p-4 bg-blue-50 rounded-lg">
                         <AcademicCapIcon className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold text-blue-600">{userData.statistics.coursesCompleted}</p>
-                        <p className="text-sm text-gray-600">Khóa học hoàn thành</p>
+                        <p className="text-2xl font-bold text-blue-600">
+                          {userData.statistics.coursesCompleted}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Khóa học hoàn thành
+                        </p>
                       </div>
                       <div className="text-center p-4 bg-green-50 rounded-lg">
                         <TrophyIcon className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold text-green-600">#{userData.statistics.rankInClub}</p>
-                        <p className="text-sm text-gray-600">Xếp hạng trong CLB</p>
+                        <p className="text-2xl font-bold text-green-600">
+                          #{userData.statistics.rankInClub}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Xếp hạng trong CLB
+                        </p>
                       </div>
                       <div className="text-center p-4 bg-yellow-50 rounded-lg">
                         <ChartBarIcon className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold text-yellow-600">{userData.gpa}</p>
+                        <p className="text-2xl font-bold text-yellow-600">
+                          {userData.gpa}
+                        </p>
                         <p className="text-sm text-gray-600">GPA</p>
                       </div>
                     </div>
@@ -536,7 +654,7 @@ export default function ProfilePage() {
               )}
 
               {/* Settings Tab */}
-              {activeTab === 'settings' && (
+              {activeTab === "settings" && (
                 <div className="space-y-6">
                   {/* Notification Settings */}
                   <div className="card">
@@ -546,15 +664,22 @@ export default function ProfilePage() {
                     </h3>
                     <div className="space-y-4">
                       {Object.entries({
-                        emailNotifications: 'Thông báo qua email',
-                        pushNotifications: 'Thông báo đẩy',
-                        weeklyDigest: 'Bản tin tuần',
-                        eventReminders: 'Nhắc nhở sự kiện'
+                        emailNotifications: "Thông báo qua email",
+                        pushNotifications: "Thông báo đẩy",
+                        weeklyDigest: "Bản tin tuần",
+                        eventReminders: "Nhắc nhở sự kiện",
                       }).map(([key, label]) => (
-                        <label key={key} className="flex items-center space-x-3 cursor-pointer">
+                        <label
+                          key={key}
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
                           <input
                             type="checkbox"
-                            checked={userData.preferences[key as keyof typeof userData.preferences] as boolean}
+                            checked={
+                              userData.preferences[
+                                key as keyof typeof userData.preferences
+                              ] as boolean
+                            }
                             className="w-4 h-4 text-[#267452] border-gray-300 rounded focus:ring-[#267452]"
                           />
                           <span className="text-gray-700">{label}</span>

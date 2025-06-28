@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   HomeIcon,
   NewspaperIcon,
@@ -12,16 +12,16 @@ import {
   ClipboardDocumentListIcon,
   UserIcon,
   Bars3Icon,
-  XMarkIcon
-} from '@heroicons/react/24/outline';
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: 'Trang chủ', href: '/', icon: HomeIcon },
-  { name: 'Khóa học', href: '/courses', icon: AcademicCapIcon },
-  { name: 'Nhiệm vụ', href: '/tasks', icon: ClipboardDocumentListIcon },
-  { name: 'Sự kiện', href: '/events', icon: CalendarIcon },
-  { name: 'Bản tin & Góc chia sẻ', href: '/news', icon: NewspaperIcon },
-  { name: 'Thông báo', href: '/notifications', icon: BellIcon },
+  { name: "Trang chủ", href: "/", icon: HomeIcon },
+  { name: "Khóa học", href: "/courses", icon: AcademicCapIcon },
+  { name: "Nhiệm vụ", href: "/tasks", icon: ClipboardDocumentListIcon },
+  { name: "Sự kiện", href: "/events", icon: CalendarIcon },
+  { name: "Bản tin & Góc chia sẻ", href: "/news", icon: NewspaperIcon },
+  { name: "Thông báo", href: "/notifications", icon: BellIcon },
 ];
 
 export default function Header() {
@@ -29,12 +29,12 @@ export default function Header() {
   const pathname = usePathname();
 
   const isActiveLink = (href: string) => {
-    if (href === '/') return pathname === '/';
+    if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between items-center">
           {/* Logo */}
@@ -56,10 +56,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${isActive
-                      ? 'nav-link-active text-[#267452] bg-opacity-10'
-                      : 'nav-link'
-                    }`}
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    isActive
+                      ? "nav-link-active text-[#267452] bg-opacity-10"
+                      : "nav-link"
+                  }`}
                 >
                   <IconComponent className="w-4 h-4" />
                   <span>{item.name}</span>
@@ -74,7 +75,10 @@ export default function Header() {
               <BellIcon className="w-6 h-6" />
               <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
-            <Link href="/profile" className="w-8 h-8 bg-[#267452] rounded-full flex items-center justify-center hover:bg-[#1f5e42] transition-colors duration-200">
+            <Link
+              href="/profile"
+              className="w-8 h-8 bg-[#267452] rounded-full flex items-center justify-center hover:bg-[#1f5e42] transition-colors duration-200"
+            >
               <UserIcon className="w-5 h-5 text-white" />
             </Link>
           </div>
@@ -105,10 +109,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium transition-colors duration-200 ${isActive
-                      ? 'nav-link-active bg-[#267452] bg-opacity-10'
-                      : 'nav-link'
-                    }`}
+                  className={`flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
+                    isActive
+                      ? "nav-link-active bg-[#267452] bg-opacity-10"
+                      : "nav-link"
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <IconComponent className="w-5 h-5" />
@@ -119,10 +124,11 @@ export default function Header() {
             <div className="pt-3 border-t border-gray-200">
               <Link
                 href="/profile"
-                className={`flex items-center px-3 py-3 rounded-md transition-colors duration-200 ${isActiveLink('/profile')
-                    ? 'nav-link-active bg-[#267452] bg-opacity-10'
-                    : 'nav-link'
-                  }`}
+                className={`flex items-center px-3 py-3 rounded-md transition-colors duration-200 ${
+                  isActiveLink("/profile")
+                    ? "nav-link-active bg-[#267452] bg-opacity-10"
+                    : "nav-link"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <div className="w-8 h-8 bg-[#267452] rounded-full flex items-center justify-center mr-3">
